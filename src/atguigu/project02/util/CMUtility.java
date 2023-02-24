@@ -1,4 +1,4 @@
-﻿package atguigu.project02.util;
+package atguigu.project02.util;
 import java.util.*;
 /**
 CMUtility工具类：
