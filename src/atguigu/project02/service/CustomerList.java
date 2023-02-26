@@ -21,7 +21,7 @@ public class CustomerList {
      */
     public boolean addCustomer(Customer customer){
         if(total >= customers.length){
-            System.out.println("full Array");
+
             return false;
         }
         customers[total++] = customer;

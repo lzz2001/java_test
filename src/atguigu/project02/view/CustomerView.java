@@ -74,7 +74,14 @@ public class CustomerView {
         System.out.println("please input phone number:");
         customer.setPhone(CMUtility.readString(13));
 
-        customerList.addCustomer(customer);
+        boolean b = customerList.addCustomer(customer);
+        if(b){
+            System.out.println("\n------------------添  加  成  功------------------\n");
+        }else{
+            System.out.println("\n------------------添加失败目录已满------------------\n");
+
+        }
+
 
 
     }
@@ -84,6 +91,39 @@ public class CustomerView {
      * @date 2023/2/24 10:33
      */
     private void modifyCustomer(){
+        System.out.println("\n------------------修  改  客  户------------------\n");
+        int number;
+        Customer customer;
+        while(true){
+            System.out.println("请选择待修改的客户编号（-1退出）");
+            number = CMUtility.readInt();
+            if(number == -1){
+                return;
+            }
+            customer = customerList.getCustomer(number - 1);
+            if(customer == null){
+                System.out.println("无法找到指定客户");
+            }else{
+                // 嵌套循环，跳出，减少时间复杂度
+                break;
+            }
+        }
+        System.out.println("姓名（"+customer.getName()+"）修改为：");
+        customer.setName(CMUtility.readString(10));
+        System.out.println("性别（"+customer.getGender()+"）修改为：");
+        customer.setGender(CMUtility.readChar());
+        System.out.println("年龄（"+customer.getAge()+"）修改为：");
+        customer.setAge(CMUtility.readInt());
+        System.out.println("电话（"+customer.getPhone()+"）修改为：");
+        customer.setPhone(CMUtility.readString(13));
+        System.out.println("邮箱（"+customer.getEmail()+"）修改为：");
+        customer.setEmail(CMUtility.readString(20));
+
+
+        boolean b = customerList.replaceCustomer(number - 1, customer);
+        if(b == true){
+            System.out.println("\n------------------修  改  成  功------------------\n");
+        }
 
     }
     /**
@@ -92,6 +132,29 @@ public class CustomerView {
      * @date 2023/2/24 10:33
      */
     private void deleteCustomer(){
+        System.out.println("\n------------------删  除  客  户------------------\n");
+        System.out.println("请输入客户编号（-1退出）");
+        int number = CMUtility.readInt();
+        while (true){
+            if(number == -1)return;
+            Customer customer = customerList.getCustomer(number - 1);
+            if(customer == null){
+                System.out.println("\n------------------删除失败无法找到------------------\n");
+            }else {
+                System.out.println("是否确认删除（Y/N）：");
+                char selection = CMUtility.readConfirmSelection();
+                if(selection == 'Y') {
+                    boolean b = customerList.deleteCustomer(number - 1);
+                    if(b)
+                        System.out.println("\n------------------删  除  完  成------------------\n");
+                    else
+                        System.out.println("\n------------------删  除  失  败------------------\n");
+                }else return;
+            }
+
+
+        }
+
 
     }
     /**
