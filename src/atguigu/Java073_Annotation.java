@@ -3,6 +3,7 @@ package atguigu;
 import org.junit.Test;
 
 import java.util.Date;
+import java.util.Scanner;
 
 /**
  * ClassName:Java073_Annotation
@@ -18,6 +19,11 @@ public class Java073_Annotation {
     @Test
     public void test1(){
         Person073.walk();
+        System.out.println("输入：");
+        Scanner sc = new Scanner(System.in);
+        int i = sc.nextInt();
+        System.out.println(i);
+
 
     }
 }
